@@ -1,0 +1,57 @@
+{
+    "data": [
+        {
+            "name": "School Name",
+            "keyName": "school"
+        },
+        {
+            "name": "Athletic Div",
+            "keyName": "division"
+        },
+        {
+            "name": "Conference",
+            "keyName": "conference"
+        },
+        {
+            "name": "Ranking* <br> (DI NCAA) <br> (DII & DIII Hero Sports)",
+            "keyName": "ranking"
+        },
+        {
+            "name": "GPA**",
+            "columns": [
+                {
+                    "name": "Min",
+                    "keyName": "gpa.min"
+                },
+                {
+                    "name": "25%",
+                    "keyName": "gpa.25%"
+                },
+                {
+                    "name": "50%",
+                    "keyName": "gpa.50%"
+                },
+                {
+                    "name": "75%",
+                    "keyName": "gpa.75%"
+                },
+                {
+                    "name": "Max",
+                    "keyName": "gpa.max"
+                }
+            ]
+        },
+        {
+            "name": "SAT Reading*** <br> 25%-75%",
+            "keyName": "sat.reading"
+        },
+        {
+            "name": "SAT Math*** <br> 25%-75%",
+            "keyName": "sat.math"
+        },
+        {
+            "name": "ACT Composite*** <br> 25%-75%",
+            "keyName": "act"
+        }
+    ]
+}
