@@ -4,7 +4,8 @@
 
         <ProfileImage :image="props.athlete.profile_image" :name="props.athlete.name"></ProfileImage>
         
-        <h2>{{props.athlete.name}}</h2>
+        <input v-model="athleteNameInput" @blur="updateAthleteName" @keyup.enter="updateAthleteName" />
+
         <ul>
           <li>
             <label>Sport:</label>
@@ -36,14 +37,27 @@
 </template>
   
 <script setup>
-  import { defineProps } from 'vue';
-  import ProfileImage from "@/components/ProfileImage.vue";
+  import { defineProps, computed, ref, onMounted } from 'vue';
+  import ProfileImage from '@/components/ProfileImage.vue';
+  import { useStore } from 'vuex';
 
-    const props = defineProps({
-      athlete: {
-        type: Object,
-        required: false
-      }
-    });
+  const store = useStore();
+  const athleteNameInput = ref('');
+  const AthleteData = computed(() => store.getters.getAthleteData);
 
+  function updateAthleteName() {
+    store.commit('updateAthleteName', athleteNameInput.value);
+  }
+
+  const props = defineProps({
+    athlete: {
+      type: Object,
+      required: false,
+    },
+  });
+
+  onMounted(() => {
+    // Initialize the input value with the current AthleteData.name when the component is mounted.
+    athleteNameInput.value = AthleteData.value.name;
+  });
 </script>
