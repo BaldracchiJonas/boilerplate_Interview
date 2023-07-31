@@ -25,11 +25,11 @@
 
       <tbody>
         <TableRow
-          v-for="row in props.athlete.report"
+          v-for="row in athleteData.report"
           :key="row.school"
           :row="row"
           :columns="props.columns"
-          :gpa="props.athlete.gpa"
+          :gpa="athleteData.gpa"
         />
       </tbody>
       
@@ -38,19 +38,19 @@
 </template>
   
 <script setup>
+import { defineProps, computed } from "vue";
+import { useStore } from 'vuex';
 import TableRow from "@/components/TableRow.vue";
-import { defineProps } from "vue";
 
 const props = defineProps({
-    athlete: {
-        type: Object,
-        required: true
-    },
     columns: {
         type: Array,
         required: true
     }
 });
+
+const store = useStore();
+const athleteData = computed(() => store.getters.getAthleteData);
 
 </script>
   

@@ -2,8 +2,8 @@
     
     <div :class="avatarColor" class="w-16 h-16 rounded-full overflow-hidden flex justify-center items-center">
 
-        <template v-if="props.image">
-        <img :src="props.image" alt="Athlete Profile Image" class="w-full h-full object-fill" />
+        <template v-if="athleteData.profile_image">
+        <img :src="athleteData.profile_image" alt="Athlete Profile Image" class="w-full h-full object-fill" />
         </template>
 
         <template v-else>
@@ -15,27 +15,20 @@
 </template>
 
 <script setup>
-  import { defineProps, computed } from 'vue';
+  import { computed } from 'vue';
+  import { useStore } from 'vuex';
 
-    const props = defineProps({
-      image: {
-        type: String,
-        required: false
-      },
-      name: {
-        type: String,
-        required: false
-      }
-    });
+  const store = useStore();
+  const athleteData = computed(() => store.getters.getAthleteData);
 
-    const initials = computed(() => {
-      const name = props.name || '';
-      const nameParts = name.trim().split(' ');
-      return nameParts.map((part) => part.charAt(0)).join('').toUpperCase();
-    });
+  const initials = computed(() => {
+    const name = athleteData.value.name || '';
+    const nameParts = name.trim().split(' ');
+    return nameParts.map((part) => part.charAt(0)).join('').toUpperCase();
+  });
 
-    const avatarColor = computed(() => {
-    const lastName = props.name ? props.name.trim().split(' ').pop() : '';
+  const avatarColor = computed(() => {
+    const lastName = athleteData.value.name ? athleteData.value.name.trim().split(' ').pop() : '';
     const initial = lastName.charAt(0).toUpperCase().charCodeAt(0);
 
     // Range of ASCII values for each color
