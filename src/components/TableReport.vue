@@ -1,34 +1,44 @@
 <template>
-    <div class="table-report">
-      <table>
-        <thead>
-          <tr>
-            <template v-for="column in props.columns">
-              <th :key="column.name" v-if="!column.columns" v-html="column.name"></th>
+  <div class="table-report">
+    <table>
+      <thead>
+        <tr>
+
+          <!-- Loop through the columns -->
+            <th v-for="column in props.columns" :key="column.name">
+
+              <!-- If the column doesn't have nested sub-columns -->
+              <div v-if="!column.columns" v-html="column.name"></div>
+
+              <!-- If the column have nested sub-columns -->
               <template v-else>
-                <table :key="column.name">
-                  <thead>
-                    <tr><th v-html="column.name"></th></tr>
-                    <tr>
-                      <th v-for="nestedColumn in column.columns" :key="nestedColumn.name" v-html="nestedColumn.name"></th>
-                    </tr>
-                  </thead>
-                </table>
+                <div v-html="column.name"></div>
+                <tr>
+                  <!-- Loop through the sub-columns -->
+                  <th v-for="nestedColumn in column.columns" :key="nestedColumn.name" v-html="nestedColumn.name"></th>
+                </tr>
               </template>
-            </template>
-          </tr>
-        </thead>
-  
-        <tbody>
-          <TableRow v-for="row in props.athlete.report" :key="row.school" :row="row" :columns="flattenedColumns"/>
-        </tbody>
-      </table>
-    </div>
+
+            </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <TableRow
+          v-for="row in props.athlete.report"
+          :key="row.school"
+          :row="row"
+          :columns="props.columns"
+        />
+      </tbody>
+      
+    </table>
+  </div>
 </template>
   
 <script setup>
 import TableRow from "@/components/TableRow.vue";
-import { defineProps, computed } from "vue";
+import { defineProps } from "vue";
 
 const props = defineProps({
     athlete: {
@@ -41,18 +51,5 @@ const props = defineProps({
     }
 });
 
-const flattenedColumns = computed(() => {
-    let flattenedColumns = [];
-    props.columns.forEach((column) => {
-        if (!column.columns) {
-        flattenedColumns.push(column);
-        } else {
-        column.columns.forEach((nestedColumn) => {
-            flattenedColumns.push(nestedColumn);
-        });
-        }
-    });
-    return flattenedColumns;
-});
 </script>
   
