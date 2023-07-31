@@ -10,7 +10,7 @@
           {{ getCellValue (column.keyName) }}
         </div>
         <div v-else>
-          <TableCellColor :value="getCellValue (nestedColumn.keyName)" />
+          <TableCellColor :value="getCellValue (column.keyName)" :total="props.gpa" />
         </div>
       </tr>
 
@@ -21,7 +21,7 @@
             {{ getCellValue (nestedColumn.keyName) }}
           </div>
           <div v-else>
-            <TableCellColor :total="getCellValue (nestedColumn.keyName)" :value="props.gpa" />
+            <TableCellColor :value="getCellValue (nestedColumn.keyName)" :total="props.gpa" />
           </div>
         </td>
       </tr>

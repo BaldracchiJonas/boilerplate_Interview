@@ -8,11 +8,11 @@
 import { defineProps, computed } from "vue";
 
 const props = defineProps({
-  total: {
-    type: String,
-    // required: true,
-  },
   value: {
+    type: String,
+    required: true,
+  },
+  total: {
     type: Number,
     required: true,
   },
