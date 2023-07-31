@@ -29,6 +29,7 @@
           :key="row.school"
           :row="row"
           :columns="props.columns"
+          :gpa="props.athlete.gpa"
         />
       </tbody>
       

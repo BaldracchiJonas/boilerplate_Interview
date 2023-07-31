@@ -29,7 +29,8 @@
                 },
                 {
                     "name": "50%",
-                    "keyName": "gpa.50%"
+                    "keyName": "gpa.50%",
+                    "colorColumn": true
                 },
                 {
                     "name": "75%",

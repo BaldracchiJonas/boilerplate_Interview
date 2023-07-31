@@ -1,27 +1,38 @@
 <template>
-    <tr>
-  
-      <!-- Loop through the columns -->
-      <td v-for="column in columns" :key="column.name">
-  
-        <!-- If the column doesn't have nested sub-columns -->
-        <tr v-if="!column.columns">
+  <tr>
+
+    <!-- Loop through the columns -->
+    <td v-for="column in props.columns" :key="column.name">
+
+      <!-- If the column doesn't have nested sub-columns -->
+      <tr v-if="!column.columns">
+        <div v-if="!column.colorColumn">
           {{ getCellValue (column.keyName) }}
-        </tr>
-  
-        <!-- If the column have nested sub-columns -->
-        <tr v-else>
-          <td v-for="nestedColumn in column.columns" :key="nestedColumn.name">
-             {{ getCellValue (nestedColumn.keyName) }}
-          </td>
-        </tr>
-  
-      </td>
-    </tr>
+        </div>
+        <div v-else>
+          <TableCellColor :value="getCellValue (nestedColumn.keyName)" />
+        </div>
+      </tr>
+
+      <!-- If the column have nested sub-columns -->
+      <tr v-else>
+        <td v-for="nestedColumn in column.columns" :key="nestedColumn.name">
+          <div v-if="!nestedColumn.colorColumn">
+            {{ getCellValue (nestedColumn.keyName) }}
+          </div>
+          <div v-else>
+            <TableCellColor :total="getCellValue (nestedColumn.keyName)" :value="props.gpa" />
+          </div>
+        </td>
+      </tr>
+
+    </td>
+  </tr>
 </template>
   
 <script setup>
 import { defineProps } from "vue";
+import TableCellColor from "@/components/TableCellColor.vue";
 
 const props = defineProps({
   row: {
@@ -30,6 +41,10 @@ const props = defineProps({
   },
   columns: {
     type: Array,
+    required: true,
+  },
+  gpa: {
+    type: Number,
     required: true,
   },
 });
