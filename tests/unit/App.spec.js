@@ -8,7 +8,7 @@ describe('App.vue', () => {
     
     const wrapper = mount(App, {
         global: {
-          plugins: [store], // Provide the mock Vuex store to the components
+          plugins: [store],
         },
     });
 
@@ -19,7 +19,7 @@ describe('App.vue', () => {
   it('has the correct "columns" prop', () => {
     const wrapper = mount(App, {
         global: {
-          plugins: [store], // Provide the mock Vuex store to the components
+          plugins: [store],
         },
     });
     expect(wrapper.findComponent({ name: 'TableReport' }).props('columns')).toEqual(columnsName.data);
