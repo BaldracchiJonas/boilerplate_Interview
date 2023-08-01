@@ -1,6 +1,6 @@
 <template>
     
-    <div :class="avatarColor" class="w-16 h-16 rounded-full overflow-hidden flex justify-center items-center">
+    <div :class="avatarColor" class="w-16 h-16 rounded-full overflow-hidden flex justify-center items-center" data-test="avatarColor-class">
 
         <template v-if="athleteData.profile_image">
         <img :src="athleteData.profile_image" alt="Athlete Profile Image" class="w-full h-full object-fill" />
