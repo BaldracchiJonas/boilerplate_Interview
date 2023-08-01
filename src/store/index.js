@@ -4,17 +4,17 @@ import AthleteData from "@/assets/data.json";
 const store = createStore({
   state() {
     return {
-      AthleteData: AthleteData.data[0],
+      athleteData: AthleteData.data[0],
     };
   },
   mutations: {
     updateAthleteName(state, newName) {
-      state.AthleteData.name = newName;
+      state.athleteData.name = newName;
     },
   },
   getters: {
     getAthleteData(state) {
-      return state.AthleteData;
+      return state.athleteData;
     },
   },
 });
