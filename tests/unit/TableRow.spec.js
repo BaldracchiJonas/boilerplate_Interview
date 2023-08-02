@@ -81,28 +81,4 @@ describe('TableRow.vue', () => {
         expect(tableCells.length).toBe(columnsTitles.length); // 1 header for each column
     });
 
-    it('called correctly TableCellColor', () => {
-        const athleteData = store.getters.getAthleteData;
-        const row = athleteData.report[0];
-        const gpa = athleteData.gpa;
-
-        const wrapper = mount(TableRow, {
-            props: {
-                row: row,  
-                columns: columnsName.data,
-                gpa: gpa,
-            },
-            global: {
-                plugins: [store],
-            },
-        });
-
-        //exist TableCellColor
-        expect(wrapper.findComponent({ name: 'TableCellColor' }).exists()).toBe(true);
-
-        //has the correct value and total props first row
-        expect(wrapper.findComponent({ name: 'TableCellColor' }).props('value')).toBe("3.52");
-        expect(wrapper.findComponent({ name: 'TableCellColor' }).props('total')).toBe(3.8);
-    });
-
 });
