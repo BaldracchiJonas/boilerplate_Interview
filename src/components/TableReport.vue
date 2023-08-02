@@ -1,11 +1,11 @@
 <template>
   <div class="table-report">
-    <table>
-      <thead>
+    <table class="w-full border border-collapse border-gray-300">
+      <thead class="text-sm text-white bg-gray-900">
         <tr>
 
           <!-- Loop through the columns -->
-            <th v-for="column in props.columns" :key="column.name">
+            <th v-for="column in props.columns" :key="column.name" class="px-4 py-0 text-center">
 
               <!-- If the column doesn't have nested sub-columns -->
               <div v-if="!column.columns" v-html="column.name"></div>
@@ -13,9 +13,9 @@
               <!-- If the column have nested sub-columns -->
               <template v-else>
                 <div v-html="column.name"></div>
-                <tr>
+                <tr class="flex justify-between">
                   <!-- Loop through the sub-columns -->
-                  <th v-for="nestedColumn in column.columns" :key="nestedColumn.name" v-html="nestedColumn.name"></th>
+                  <th class="text-xs" v-for="nestedColumn in column.columns" :key="nestedColumn.name" v-html="nestedColumn.name"></th>
                 </tr>
               </template>
 
@@ -23,13 +23,14 @@
         </tr>
       </thead>
 
-      <tbody>
+      <tbody class="text-sm">
         <TableRow
-          v-for="row in athleteData.report"
+          v-for="(row, index) in athleteData.report"
           :key="row.school"
           :row="row"
           :columns="props.columns"
           :gpa="athleteData.gpa"
+          :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-200'"
         />
       </tbody>
       

@@ -1,38 +1,37 @@
 <template>
-  <tr>
+
+  <tr class="custom-tr-height">
 
     <!-- Loop through the columns -->
-    <td v-for="column in props.columns" :key="column.name">
+    <td v-for="column in props.columns" :key="column.name" class="h-4 px-4 py-0">
 
       <!-- If the column doesn't have nested sub-columns -->
-      <tr v-if="!column.columns">
-        <div v-if="!column.colorColumn">
-          {{ getCellValue (column.keyName) }}
-        </div>
-        <div v-else>
-          <TableCellColor :value="getCellValue (column.keyName)" :total="props.gpa" />
-        </div>
+      <tr class="flex" :class="getColumnClasses(column)" v-if="!column.columns">
+
+        <td class="w-full h-full px-1" :style="{ backgroundColor: gpaColor(column, props.gpa) }" >
+              {{ getCellValue (column.keyName) }}
+        </td>
+
       </tr>
 
       <!-- If the column have nested sub-columns -->
-      <tr v-else>
-        <td v-for="nestedColumn in column.columns" :key="nestedColumn.name">
-          <div v-if="!nestedColumn.colorColumn">
-            {{ getCellValue (nestedColumn.keyName) }}
-          </div>
-          <div v-else>
-            <TableCellColor :value="getCellValue (nestedColumn.keyName)" :total="props.gpa" />
-          </div>
-        </td>
-      </tr>
+      <table v-else class="h-full">
+        
+        <tr style="display: contents;" class="flex justify-between w-full h-full">
+          <td v-for="nestedColumn in column.columns" :key="nestedColumn.name" class="w-full h-full" :style="{ backgroundColor: gpaColor(nestedColumn, props.gpa) }" >
+              {{ getCellValue (nestedColumn.keyName) }}
+          </td>
+        </tr>
 
+      </table>
     </td>
+
   </tr>
 </template>
+
   
 <script setup>
-import { defineProps } from "vue";
-import TableCellColor from "@/components/TableCellColor.vue";
+import { defineProps, ref } from "vue";
 
 const props = defineProps({
   row: {
@@ -48,6 +47,31 @@ const props = defineProps({
     required: true,
   },
 });
+
+const alignmentData = ref(['school', 'conference']);
+
+const getColumnClasses = ({keyName}) => {
+  const alignmentClass = alignmentData.value.includes(keyName) ? 'justify-left' : 'justify-center';
+  return alignmentClass
+};
+
+const gpaColor = (column, total) => {
+  if(!column.colorColumn) return ''
+
+  const value = getCellValue (column.keyName)
+  const difference = total - value;
+  if (difference > 0.1) {
+    return "#75ace5";
+  } else if (difference > 0 && difference <= 0.1) {
+    return "#a6a8da";
+  } else if (difference === 0) {
+    return "#b4a7d6";
+  } else if (difference < 0 && difference >= -0.1) {
+    return "#c194b5";
+  } else {
+    return "#d7737d";
+  }
+}
 
 function getCellValue(keyName) {
   const keys = keyName.split('.');
@@ -92,4 +116,10 @@ function formatCellValue(value) {
   return value;
 }
 </script>
+
+<style>
+  .custom-tr-height {
+    height: 50px;
+  }
+</style>
   
