@@ -3,19 +3,6 @@ import TableRow from '@/components/TableRow.vue';
 import columnsName from '@/assets/columnsName.json';
 import store from '@/store/index.js';
 
-function extractColumns(data) {
-    const columns = [];
-    data.forEach((item) => {
-      columns.push(item.name);
-      if (item.columns) {
-        item.columns.forEach((column) => {
-          columns.push(column.name);
-        });
-      }
-    });
-    return columns;
-}
-
 describe('TableRow.vue', () => {
 
     it('function getCellValue', () => {
@@ -64,7 +51,7 @@ describe('TableRow.vue', () => {
         const athleteData = store.getters.getAthleteData;
         const row = athleteData.report[0];
         const gpa = athleteData.gpa;
-        const columnsTitles = extractColumns(columnsName.data);
+        const columnsTitles = columnsName.data;
 
         const wrapper = mount(TableRow, {
             props: {
@@ -77,8 +64,8 @@ describe('TableRow.vue', () => {
             },
         });
 
-        const tableCells = wrapper.findAll('td');
-        expect(tableCells.length).toBe(columnsTitles.length); // 1 header for each column
+        const tableCells = wrapper.findAll('[data-test="td-TableRow"]').map((cell) => cell.text());
+        expect(tableCells.length).toBe(columnsTitles.length);
     });
 
 });

@@ -3,13 +3,17 @@
   <tr class="custom-tr-height">
 
     <!-- Loop through the columns -->
-    <td v-for="column in props.columns" :key="column.name" class="h-4 px-4 py-0">
+    <td v-for="column in props.columns" :key="column.name" class="h-4 px-4 py-0" data-test="td-TableRow">
 
       <!-- If the column doesn't have nested sub-columns -->
       <tr class="flex" :class="getColumnClasses(column)" v-if="!column.columns">
 
-        <td class="w-full h-full px-1" :style="{ backgroundColor: gpaColor(column, props.gpa) }" >
-              {{ getCellValue (column.keyName) }}
+        <td 
+        class="w-full h-full px-1" 
+        :style="{ backgroundColor: 
+        gpaColor(column, props.gpa) }" 
+        >
+          {{ getCellValue (column.keyName) }}
         </td>
 
       </tr>
@@ -18,8 +22,13 @@
       <table v-else class="h-full">
         
         <tr style="display: contents;" class="flex justify-between w-full h-full">
-          <td v-for="nestedColumn in column.columns" :key="nestedColumn.name" class="w-full h-full" :style="{ backgroundColor: gpaColor(nestedColumn, props.gpa) }" >
-              {{ getCellValue (nestedColumn.keyName) }}
+          <td 
+          v-for="nestedColumn in column.columns" 
+          :key="nestedColumn.name" 
+          class="w-full h-full" 
+          :style="{ backgroundColor: gpaColor(nestedColumn, props.gpa) }"  
+          >
+            {{ getCellValue (nestedColumn.keyName) }}
           </td>
         </tr>
 
