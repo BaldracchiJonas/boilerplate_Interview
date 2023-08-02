@@ -12,7 +12,7 @@
             v-model="athleteNameInput" 
             @blur="updateAthleteName" 
             @keyup.enter="updateAthleteName" 
-            class="max-w-md px-1 py-1 text-xl font-bold text-blue-400 rounded w-min focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+            class="max-w-md px-1 py-1 text-xl font-bold text-insightsBlue rounded w-min focus:outline-none focus:ring-2 focus:ring-insightsBlue focus:border-transparent"
           />
         </div>
 
