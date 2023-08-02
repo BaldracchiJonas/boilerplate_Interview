@@ -26,11 +26,5 @@
         </div>
 
     </div>
-  </template>
-
-<style>
-/* .footer{
-    margin-top: 10%;
-} */
-</style>
+</template>
   
