@@ -5,7 +5,7 @@
         <tr>
 
           <!-- Loop through the columns -->
-            <th v-for="column in props.columns" :key="column.name" class="px-4 py-0 text-center">
+            <th v-for="column in props.columns" :key="column.name" class="px-4 py-0 text-center" :style="{ width: column.width }">
 
               <!-- If the column doesn't have nested sub-columns -->
               <div v-if="!column.columns" v-html="column.name"></div>

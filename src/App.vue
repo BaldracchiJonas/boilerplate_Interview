@@ -2,9 +2,11 @@
   <div class="flex justify-center">
     <div class="container">
       <TableLineHeader/>
+
       <AcademicFitReport/>
       <TableReport :columns="columns"/>
       <TableFooter/>
+      
       <TableLineHeader class="mb-10"/>
     </div>
   </div>
