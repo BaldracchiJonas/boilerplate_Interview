@@ -7,7 +7,7 @@
 
       <div class="flex flex-col">
 
-        <div class="max-w-md pl-3">
+        <div class="max-w-md pl-3 text-lg">
           <input 
             v-model="athleteNameInput" 
             @blur="updateAthleteName" 
@@ -16,7 +16,7 @@
           />
         </div>
 
-        <div class="flex flex-col justify-center sm:flex-row">
+        <div class="flex flex-col justify-center sm:flex-row text-base">
           <div class="p-4 pt-0">
             <ul class="space-y-2">
               <li data-test="sport-text">
