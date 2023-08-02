@@ -1,6 +1,6 @@
 <template>
 
-  <tr class="custom-tr-height">
+  <tr class="h-12">
 
     <!-- Loop through the columns -->
     <td v-for="column in props.columns" :key="column.name" class="h-4 px-4 py-0" data-test="td-TableRow">
@@ -127,8 +127,10 @@ function formatCellValue(value) {
 </script>
 
 <style>
-  .custom-tr-height {
-    height: 50px;
+  .fixed-column {
+    position: sticky;
+    left: 0px;
+    z-index: 1000;
   }
 </style>
   
