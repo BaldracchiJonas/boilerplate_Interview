@@ -5,6 +5,7 @@ module.exports = {
       extend: {
             colors: {
               insightsBlue: "#31c4ff",
+              insightsOddTableRow: "#E8F0FE"
         }
       },
     },

@@ -30,7 +30,7 @@
           :row="row"
           :columns="props.columns"
           :gpa="athleteData.gpa"
-          :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-200'"
+          :class="index % 2 === 0 ? 'bg-white' : 'bg-insightsOddTableRow'"
         />
       </tbody>
       
