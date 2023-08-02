@@ -3,7 +3,7 @@
   <tr class="h-12">
 
     <!-- Loop through the columns -->
-    <td v-for="column in props.columns" :key="column.name" class="h-4 px-4 py-0" data-test="td-TableRow">
+    <td v-for="column in props.columns" :key="column.name" :class="{'text-center': column.textCenter}" class="h-4 px-4 py-0" data-test="td-TableRow">
 
       <!-- If the column doesn't have nested sub-columns -->
       <tr class="flex" :class="getColumnClasses(column)" v-if="!column.columns">

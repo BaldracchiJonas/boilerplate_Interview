@@ -8,7 +8,8 @@
         {
             "name": "Athletic Div",
             "keyName": "division",
-            "width": "5%"
+            "width": "5%",
+            "textCenter": true
         },
         {
             "name": "Conference",
@@ -18,11 +19,13 @@
         {
             "name": "Ranking* <br> (DI NCAA) <br> (DII &amp; DIII Hero Sports)",
             "keyName": "ranking",
-            "width": "10%"
+            "width": "10%",
+            "textCenter": true
         },
         {
             "name": "GPA**",
             "width": "10%",
+            "textCenter": true,
             "columns": [
                 {
                     "name": "Min",
@@ -50,17 +53,20 @@
         {
             "name": "SAT Reading*** <br> 25%-75%",
             "keyName": "sat.reading",
-            "width": "5%"
+            "width": "5%",
+            "textCenter": true
         },
         {
             "name": "SAT Math*** <br> 25%-75%",
             "keyName": "sat.math",
-            "width": "5%"
+            "width": "5%",
+            "textCenter": true
         },
         {
             "name": "ACT Composite*** <br> 25%-75%",
             "keyName": "act",
-            "width": "5%"
+            "width": "5%",
+            "textCenter": true
         }
     ]
 }
