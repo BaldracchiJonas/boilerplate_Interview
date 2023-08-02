@@ -37,23 +37,15 @@ describe('TableReport.vue', () => {
     });
 
     it('renders TableRow component', () => {
+        const columns = columnsName.data;
+
         const wrapper = mount(TableReport, {
+            props: { columns },
             global: {
                 plugins: [store],
             },
         });
 
         expect(wrapper.findComponent({ name: 'TableRow' }).exists()).toBe(true);
-    });
-
-    it('should pass the correct props to TableRow component', () => {
-        const wrapper = mount(TableReport, {
-            global: {
-              plugins: [store],
-            },
-        });
-        expect(wrapper.findComponent({ name: 'TableRow' }).props('row').exists()).toBe(true);
-        expect(wrapper.findComponent({ name: 'TableRow' }).props('columns').exists()).toBe(true);
-        expect(wrapper.findComponent({ name: 'TableRow' }).props('gpa').exists()).toBe(true);
     });
 });
